@@ -29,7 +29,7 @@ def index(request):
         message.save()
         return redirect('chat:index')
     
-    return HttpResponse('Not valid')
+    return redirect("chat:index")
 
 @allowed_users(allowed_roles=['superadmin'])
 def cleanChat(request):
