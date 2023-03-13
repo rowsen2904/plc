@@ -8,6 +8,10 @@ class ChatForm(forms.ModelForm):
         'autofocus' : True
     }))
 
+    img = forms.FileField(required=False, widget=forms.FileInput(attrs={
+        'class' : 'form-control',
+    }))
+
     class Meta:
         model = Chat
-        fields = '__all__'
+        fields = ['message', 'img',]

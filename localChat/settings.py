@@ -85,7 +85,6 @@ DATABASES = {
 }
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR) + '/PLC', 'mediafiles')
-print(MEDIA_ROOT)
 
 MEDIA_URL = '/media/'
 

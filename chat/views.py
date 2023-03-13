@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .models import Chat
@@ -21,13 +22,14 @@ def index(request):
             'user' : user,
         }
         return render(request, 'chat/index.html', context)
-
-    forms = ChatForm(request.POST)
+    forms = ChatForm(request.POST, request.FILES)
     if forms.is_valid():
         message = forms.save(commit=False)
         message.username = request.user.username
         message.save()
         return redirect('chat:index')
+    
+    return HttpResponse('Not valid')
 
 @allowed_users(allowed_roles=['superadmin'])
 def cleanChat(request):
